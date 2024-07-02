@@ -16,7 +16,11 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            $data = [
+                'success' => false,
+                'errors' => $validator->errors()
+            ];
+            return response()->json($data, 422);
         }
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -41,15 +45,21 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
+            'name'  => 'required|string',
             'password' => 'required|string|confirmed',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            $data = [
+                'success' => false,
+                'errors' => $validator->errors()
+            ];
+            return response()->json($data, 422);
         }
 
         $user = User::create([
             'email' => $request->email,
+            'name' => $request->name,
             'password' => bcrypt($request->password),
         ]);
 
