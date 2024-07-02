@@ -112,8 +112,8 @@ class CardController extends Controller
             'wechat_text' => 'required|string',
             'whatsapp_link' => 'required|string',
             'whatsapp_text' => 'required|string',
-            'x.com_link' => 'required|string',
-            'x.com_text' => 'required|string',
+            'x_link' => 'required|string',
+            'x_text' => 'required|string',
             'xbox_link' => 'required|string',
             'xbox_text' => 'required|string',
             'xing_link' => 'required|string',
@@ -139,19 +139,19 @@ class CardController extends Controller
         $card = Card::create($request->all());
         if ($profile_photo = $request->file('profile_photo')) {
             $destinationPath = 'images/profile_photo';
-            $imageName = date('YmdHis') . "." . $profile_photo->getClientOriginalExtension();
+            $imageName = date('YmdHis') . "." . $profile_photo->getClientOriginalName();
             $profile_photo->move($destinationPath, $imageName);
             $card->profile_photo = 'images/profile_photo/'."$imageName";
         }
         if ($logo = $request->file('logo')) {
             $destinationPath = 'images/logo';
-            $imageName = date('YmdHis') . "." . $logo->getClientOriginalExtension();
+            $imageName = date('YmdHis') . "." . $logo->getClientOriginalName();
             $logo->move($destinationPath, $imageName);
             $card->logo = 'images/logo/'."$imageName";
         }
         if ($badge = $request->file('badge')) {
             $destinationPath = 'images/badge';
-            $imageName = date('YmdHis')."-".$badge->getClientOriginalExtension();
+            $imageName = date('YmdHis')."-".$badge->getClientOriginalName();
             $badge->move($destinationPath, $imageName);
             $card->badge = 'images/badge/'."$imageName";
         }
@@ -167,6 +167,28 @@ class CardController extends Controller
             'success' => true,
             'message' => 'Card created successfully !',
             "card" => $card,
+        ]);
+    }
+
+    public function read(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            $data = [
+                'success' => false,
+                'errors' => $validator->errors()
+            ];
+            return response()->json($data, 422);
+        }
+
+        $cards = Card::where("user_id","=",$request->user_id)->get();
+        return response()->json([
+            'success' => true,
+            'message' => 'Cards fetched successfully !',
+            'cards' => $cards,
         ]);
     }
 }

@@ -13,3 +13,4 @@ Route::post('/login',[AuthController::class,'login']);
 Route::post('/register',[AuthController::class,'register']);
 
 Route::post('/create',[CardController::class,'create']);
+Route::get('/read',[CardController::class,'read']);
