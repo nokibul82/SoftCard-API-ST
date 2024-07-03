@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    protected $fillable = ["user_id"];
+    protected $guarded = [];
     use HasFactory;
 }
