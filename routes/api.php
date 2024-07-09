@@ -17,6 +17,7 @@ Route::post('/create',[CardController::class,'create']);
 Route::get('/read',[CardController::class,'read']);
 Route::get('/delete/{id}',[CardController::class,'delete']);
 Route::get('/update/{id}',[CardController::class,'update']);
+Route::get('/search',[CardController::class,'search']);
 
 Route::post('/request',[UserRelationController::class,'request']);
 Route::post('/accept',[UserRelationController::class,'accept']);

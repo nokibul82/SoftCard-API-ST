@@ -12,6 +12,7 @@ class CardController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|string',
+            'user_name' => 'required|string',
             'design' => 'required|string',
             'color' =>'required|string',
             'profile_photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
@@ -192,10 +193,10 @@ class CardController extends Controller
         ]);
     }
 
-    public function cardSearch(Request $request)
+    public function search(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required|string',
+            'query' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -206,10 +207,15 @@ class CardController extends Controller
             return response()->json($data, 422);
         }
 
-        $cards = Card::where("user_id","=",$request->user_id)->get();
+        $searchValues = preg_split('/\s+/', $request->input('query'), -1, PREG_SPLIT_NO_EMPTY);
+        $cards = Card::where(function ($query) use ($searchValues) {
+            foreach ($searchValues as $value) {
+                $query->orWhere('user_name', 'like', "%{$value}%");
+            }
+        })->get();
         return response()->json([
             'success' => true,
-            'message' => 'Cards fetched successfully !',
+            'message' => 'Cards searched successfully !',
             'cards' => $cards,
         ]);
     }
