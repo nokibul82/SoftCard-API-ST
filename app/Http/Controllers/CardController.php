@@ -191,4 +191,26 @@ class CardController extends Controller
             'cards' => $cards,
         ]);
     }
+
+    public function cardSearch(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            $data = [
+                'success' => false,
+                'errors' => $validator->errors()
+            ];
+            return response()->json($data, 422);
+        }
+
+        $cards = Card::where("user_id","=",$request->user_id)->get();
+        return response()->json([
+            'success' => true,
+            'message' => 'Cards fetched successfully !',
+            'cards' => $cards,
+        ]);
+    }
 }
