@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Card;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -208,15 +209,15 @@ class CardController extends Controller
         }
 
         $searchValues = preg_split('/\s+/', $request->input('query'), -1, PREG_SPLIT_NO_EMPTY);
-        $cards = Card::where(function ($query) use ($searchValues) {
+        $users = User::where(function ($query) use ($searchValues) {
             foreach ($searchValues as $value) {
-                $query->orWhere('user_name', 'like', "%{$value}%");
+                $query->orWhere('name', 'like', "%{$value}%");
             }
         })->get();
         return response()->json([
             'success' => true,
-            'message' => 'Cards searched successfully !',
-            'cards' => $cards,
+            'message' => 'Users searched successfully !',
+            'users' => $users,
         ]);
     }
 }
