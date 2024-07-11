@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('user_relations', function (Blueprint $table) {
             $table->id();
             $table->integer('requested_from_id');
+            $table->string('requested_from_email');
             $table->integer('requested_to_id');
+            $table->string('requested_to_email');
             $table->boolean('requested');
             $table->boolean('accepted');
             $table->timestamps();

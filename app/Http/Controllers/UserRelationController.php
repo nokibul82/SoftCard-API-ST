@@ -13,6 +13,8 @@ class UserRelationController extends Controller
         $validator = Validator::make($request->all(), [
             'requested_from_id' => 'required|exists:users,id',
             'requested_to_id' => 'required|exists:users,id',
+            'requested_from_email' => 'required|email|exists:users,email',
+            'requested_to_email' => 'required|email|exists:users,email',
         ]);
 
         if ($validator->fails()) {

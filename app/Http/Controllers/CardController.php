@@ -12,9 +12,9 @@ class CardController extends Controller
     public function create(Request $request): \Illuminate\Http\JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required|string',
+            'user_id' => 'required|string|exists:users,id',
             'user_name' => 'required|string',
-            'user_email' => 'required|string',
+            'user_email' => 'required|email|exists:users,email',
             'design' => 'required|string',
             'color' =>'required|string',
             'profile_photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
