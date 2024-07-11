@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->string('user_name');
+            $table->string('user_email');
             $table->string('design',30);
             $table->string('profile_photo')->nullable();
             $table->string('color',30);

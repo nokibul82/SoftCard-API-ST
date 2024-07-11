@@ -14,6 +14,7 @@ class CardController extends Controller
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|string',
             'user_name' => 'required|string',
+            'user_email' => 'required|string',
             'design' => 'required|string',
             'color' =>'required|string',
             'profile_photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
@@ -209,15 +210,15 @@ class CardController extends Controller
         }
 
         $searchValues = preg_split('/\s+/', $request->input('query'), -1, PREG_SPLIT_NO_EMPTY);
-        $users = User::where(function ($query) use ($searchValues) {
+        $cards = Card::where(function ($query) use ($searchValues) {
             foreach ($searchValues as $value) {
-                $query->orWhere('name', 'like', "%{$value}%");
+                $query->orWhere('user_name', 'like', "%{$value}%");
             }
         })->get();
         return response()->json([
             'success' => true,
             'message' => 'Users searched successfully !',
-            'users' => $users,
+            'cards' => $cards,
         ]);
     }
 }
