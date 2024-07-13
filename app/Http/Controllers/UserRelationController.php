@@ -24,6 +24,12 @@ class UserRelationController extends Controller
             ];
             return response()->json($data, 422);
         }
+        if($request->requested_from_id == $request->requested_to_id || $request->requested_from_email == $request->requested_to_email){
+            return response()->json([
+                'success' => false,
+                'message' => 'This connection is invalid. both user_id or user_email is same.',
+            ], 401);
+        }
         $relation = null;
         $relation =  UserRelation::where('requested_from_id','=',$request->requested_from_id)->where('requested_to_id','=',$request->requested_to_id)->first();
         if ($relation) {
