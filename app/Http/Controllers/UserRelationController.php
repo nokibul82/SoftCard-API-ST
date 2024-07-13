@@ -136,7 +136,7 @@ class UserRelationController extends Controller
             return response()->json($data, 422);
         }
 
-        $request_list = UserRelation::where('requested_from_id','=',$request->requested_from_id)->get();
+        $request_list = UserRelation::where('requested_from_id','=',$request->requested_from_id)->where('requested','=',true)->get();
 
         return response()->json([
             'success' => true,
@@ -158,7 +158,7 @@ class UserRelationController extends Controller
             return response()->json($data, 422);
         }
 
-        $pending_list = UserRelation::where('requested_to_id','=',$request->requested_to_id)->get();
+        $pending_list = UserRelation::where('requested_to_id','=',$request->requested_to_id)->where('requested','=',true)->get();
 
         return response()->json([
             'success' => true,
