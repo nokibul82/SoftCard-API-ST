@@ -34,101 +34,102 @@ class CardController extends Controller
             'department' => 'required|string',
             'company' => 'required|string',
             'headline' => 'required|string',
-            'address_link' => 'string',
-            'address_text' => 'string',
-            'applemusic_link' => 'string',
-            'applemusic_text' => 'string',
-            'behance_link' => 'string',
-            'behance_text' => 'string',
-            'bookings_link' => 'string',
-            'bookings_text' => 'string',
-            'brightcove_link' => 'string',
-            'brightcove_text' => 'string',
-            'calendly_link' => 'string',
-            'calendly_text' => 'string',
-            'cashapp_link' => 'string',
-            'cashapp_text' => 'string',
-            'date_link' => 'string',
-            'date_text' => 'string',
-            'discord_link' => 'string',
-            'discord_text' => 'string',
-            'dribbble_link' => 'string',
-            'dribbble_text' => 'string',
-            'email_link' => 'string',
-            'email_text' => 'string',
-            'facebook_link' => 'string',
-            'facebook_text' => 'string',
-            'github_link' => 'string',
-            'github_text' => 'string',
-            'instagram_link' => 'string',
-            'instagram_text' => 'string',
-            'line_link' => 'string',
-            'line_text' => 'string',
-            'link_link' => 'string',
-            'link_text' => 'string',
-            'linkedin_link' => 'string',
-            'linkedin_text' => 'string',
-            'meet_link' => 'string',
-            'meet_text' => 'string',
-            'nintendo_link' => 'string',
-            'nintendo_text' => 'string',
-            'note_text' => 'string',
-            'patreon_link' => 'string',
-            'patreon_text' => 'string',
-            'paypal_link' => 'string',
-            'paypal_text' => 'string',
+            'fields' => 'required|string',
+//            'address_link' => 'string',
+//            'address_text' => 'string',
+//            'applemusic_link' => 'string',
+//            'applemusic_text' => 'string',
+//            'behance_link' => 'string',
+//            'behance_text' => 'string',
+//            'bookings_link' => 'string',
+//            'bookings_text' => 'string',
+//            'brightcove_link' => 'string',
+//            'brightcove_text' => 'string',
+//            'calendly_link' => 'string',
+//            'calendly_text' => 'string',
+//            'cashapp_link' => 'string',
+//            'cashapp_text' => 'string',
+//            'date_link' => 'string',
+//            'date_text' => 'string',
+//            'discord_link' => 'string',
+//            'discord_text' => 'string',
+//            'dribbble_link' => 'string',
+//            'dribbble_text' => 'string',
+//            'email_link' => 'string',
+//            'email_text' => 'string',
+//            'facebook_link' => 'string',
+//            'facebook_text' => 'string',
+//            'github_link' => 'string',
+//            'github_text' => 'string',
+//            'instagram_link' => 'string',
+//            'instagram_text' => 'string',
+//            'line_link' => 'string',
+//            'line_text' => 'string',
+//            'link_link' => 'string',
+//            'link_text' => 'string',
+//            'linkedin_link' => 'string',
+//            'linkedin_text' => 'string',
+//            'meet_link' => 'string',
+//            'meet_text' => 'string',
+//            'nintendo_link' => 'string',
+//            'nintendo_text' => 'string',
+//            'note_text' => 'string',
+//            'patreon_link' => 'string',
+//            'patreon_text' => 'string',
+//            'paypal_link' => 'string',
+//            'paypal_text' => 'string',
             'pdf' => 'mimes:pdf|max:10000',
             'pdf_text' => 'string',
-            'phone_link' => 'string',
-            'phone_text' => 'string',
-            'pinterest_link' => 'string',
-            'pinterest_text' => 'string',
-            'psn_link' => 'string',
-            'psn_text' => 'string',
-            'signal_link' => 'string',
-            'signal_text' => 'string',
-            'skype_link' => 'string',
-            'skype_text' => 'string',
-            'snapchat_link' => 'string',
-            'snapchat_text' => 'string',
-            'soundcloud_link' => 'string',
-            'soundcloud_text' => 'string',
-            'spotify_link' => 'string',
-            'spotify_text' => 'string',
-            'teams_link' => 'string',
-            'teams_text' => 'string',
-            'telegram_link' => 'string',
-            'telegram_text' => 'string',
-            'tiktok_link' => 'string',
-            'tiktok_text' => 'string',
-            'twitch_link' => 'string',
-            'twitch_text' => 'string',
-            'venmo_link' => 'string',
-            'venmo_text' => 'string',
-            'vimeo_link' => 'string',
-            'vimeo_text' => 'string',
-            'webex_link' => 'string',
-            'webex_text' => 'string',
-            'website_link' => 'string',
-            'website_text' => 'string',
-            'wechat_link' => 'string',
-            'wechat_text' => 'string',
-            'whatsapp_link' => 'string',
-            'whatsapp_text' => 'string',
-            'x.com_link' => 'string',
-            'x.com_text' => 'string',
-            'xbox_link' => 'string',
-            'xbox_text' => 'string',
-            'xing_link' => 'string',
-            'xing_text' => 'string',
-            'yelp_link' => 'string',
-            'yelp_text' => 'string',
-            'youtube_link' => 'string',
-            'youtube_text' => 'string',
-            'zelle_link' => 'string',
-            'zelle_text' => 'string',
-            'zoom_link' => 'string',
-            'zoom_text' => 'string',
+//            'phone_link' => 'string',
+//            'phone_text' => 'string',
+//            'pinterest_link' => 'string',
+//            'pinterest_text' => 'string',
+//            'psn_link' => 'string',
+//            'psn_text' => 'string',
+//            'signal_link' => 'string',
+//            'signal_text' => 'string',
+//            'skype_link' => 'string',
+//            'skype_text' => 'string',
+//            'snapchat_link' => 'string',
+//            'snapchat_text' => 'string',
+//            'soundcloud_link' => 'string',
+//            'soundcloud_text' => 'string',
+//            'spotify_link' => 'string',
+//            'spotify_text' => 'string',
+//            'teams_link' => 'string',
+//            'teams_text' => 'string',
+//            'telegram_link' => 'string',
+//            'telegram_text' => 'string',
+//            'tiktok_link' => 'string',
+//            'tiktok_text' => 'string',
+//            'twitch_link' => 'string',
+//            'twitch_text' => 'string',
+//            'venmo_link' => 'string',
+//            'venmo_text' => 'string',
+//            'vimeo_link' => 'string',
+//            'vimeo_text' => 'string',
+//            'webex_link' => 'string',
+//            'webex_text' => 'string',
+//            'website_link' => 'string',
+//            'website_text' => 'string',
+//            'wechat_link' => 'string',
+//            'wechat_text' => 'string',
+//            'whatsapp_link' => 'string',
+//            'whatsapp_text' => 'string',
+//            'x.com_link' => 'string',
+//            'x.com_text' => 'string',
+//            'xbox_link' => 'string',
+//            'xbox_text' => 'string',
+//            'xing_link' => 'string',
+//            'xing_text' => 'string',
+//            'yelp_link' => 'string',
+//            'yelp_text' => 'string',
+//            'youtube_link' => 'string',
+//            'youtube_text' => 'string',
+//            'zelle_link' => 'string',
+//            'zelle_text' => 'string',
+//            'zoom_link' => 'string',
+//            'zoom_text' => 'string',
         ]);
 
         if ($validator->fails()) {
@@ -141,10 +142,10 @@ class CardController extends Controller
 
         $card = Card::create($request->all());
         if ($profile_photo = $request->file('profile_photo')) {
-            $destinationPath = 'images/profile_photo';
+            $destinationPath = 'images/profile_photo/';
             $imageName = date('YmdHis') . "." . $profile_photo->getClientOriginalName();
             $profile_photo->move($destinationPath, $imageName);
-            $card->profile_photo = 'images/profile_photo/'."$imageName";
+            $card->profile_photo = $imageName;
         }
         if ($logo = $request->file('logo')) {
             $destinationPath = 'images/logo';
@@ -172,9 +173,190 @@ class CardController extends Controller
             "card" => $card,
         ]);
     }
-
-    public function read(Request $request)
+    public function update(Request $request): \Illuminate\Http\JsonResponse
     {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|integer|exists:cards,id',
+            'user_id' => 'required|string|exists:users,id',
+            'user_name' => 'required|string',
+            'user_email' => 'required|email|exists:users,email',
+            'design' => 'required|string',
+            'color' =>'required|string',
+            'profile_photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'badge' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'card_name' => 'string',
+            'prefix' => 'string',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'middle_name' => 'required|string',
+            'suffix' => 'string',
+            'accreditation' => 'string',
+            'preferred_name' => 'string',
+            'maiden_name' => 'string',
+            'pronouns' => 'string',
+            'title' => 'required|string',
+            'department' => 'required|string',
+            'company' => 'required|string',
+            'headline' => 'required|string',
+            'fields' => 'required|string',
+//            'address_link' => 'string',
+//            'address_text' => 'string',
+//            'applemusic_link' => 'string',
+//            'applemusic_text' => 'string',
+//            'behance_link' => 'string',
+//            'behance_text' => 'string',
+//            'bookings_link' => 'string',
+//            'bookings_text' => 'string',
+//            'brightcove_link' => 'string',
+//            'brightcove_text' => 'string',
+//            'calendly_link' => 'string',
+//            'calendly_text' => 'string',
+//            'cashapp_link' => 'string',
+//            'cashapp_text' => 'string',
+//            'date_link' => 'string',
+//            'date_text' => 'string',
+//            'discord_link' => 'string',
+//            'discord_text' => 'string',
+//            'dribbble_link' => 'string',
+//            'dribbble_text' => 'string',
+//            'email_link' => 'string',
+//            'email_text' => 'string',
+//            'facebook_link' => 'string',
+//            'facebook_text' => 'string',
+//            'github_link' => 'string',
+//            'github_text' => 'string',
+//            'instagram_link' => 'string',
+//            'instagram_text' => 'string',
+//            'line_link' => 'string',
+//            'line_text' => 'string',
+//            'link_link' => 'string',
+//            'link_text' => 'string',
+//            'linkedin_link' => 'string',
+//            'linkedin_text' => 'string',
+//            'meet_link' => 'string',
+//            'meet_text' => 'string',
+//            'nintendo_link' => 'string',
+//            'nintendo_text' => 'string',
+//            'note_text' => 'string',
+//            'patreon_link' => 'string',
+//            'patreon_text' => 'string',
+//            'paypal_link' => 'string',
+//            'paypal_text' => 'string',
+            'pdf' => 'mimes:pdf|max:10000',
+            'pdf_text' => 'string',
+//            'phone_link' => 'string',
+//            'phone_text' => 'string',
+//            'pinterest_link' => 'string',
+//            'pinterest_text' => 'string',
+//            'psn_link' => 'string',
+//            'psn_text' => 'string',
+//            'signal_link' => 'string',
+//            'signal_text' => 'string',
+//            'skype_link' => 'string',
+//            'skype_text' => 'string',
+//            'snapchat_link' => 'string',
+//            'snapchat_text' => 'string',
+//            'soundcloud_link' => 'string',
+//            'soundcloud_text' => 'string',
+//            'spotify_link' => 'string',
+//            'spotify_text' => 'string',
+//            'teams_link' => 'string',
+//            'teams_text' => 'string',
+//            'telegram_link' => 'string',
+//            'telegram_text' => 'string',
+//            'tiktok_link' => 'string',
+//            'tiktok_text' => 'string',
+//            'twitch_link' => 'string',
+//            'twitch_text' => 'string',
+//            'venmo_link' => 'string',
+//            'venmo_text' => 'string',
+//            'vimeo_link' => 'string',
+//            'vimeo_text' => 'string',
+//            'webex_link' => 'string',
+//            'webex_text' => 'string',
+//            'website_link' => 'string',
+//            'website_text' => 'string',
+//            'wechat_link' => 'string',
+//            'wechat_text' => 'string',
+//            'whatsapp_link' => 'string',
+//            'whatsapp_text' => 'string',
+//            'x.com_link' => 'string',
+//            'x.com_text' => 'string',
+//            'xbox_link' => 'string',
+//            'xbox_text' => 'string',
+//            'xing_link' => 'string',
+//            'xing_text' => 'string',
+//            'yelp_link' => 'string',
+//            'yelp_text' => 'string',
+//            'youtube_link' => 'string',
+//            'youtube_text' => 'string',
+//            'zelle_link' => 'string',
+//            'zelle_text' => 'string',
+//            'zoom_link' => 'string',
+//            'zoom_text' => 'string',
+        ]);
+
+        if ($validator->fails()) {
+            $data = [
+                'success' => false,
+                'errors' => $validator->errors()
+            ];
+            return response()->json($data, 422);
+        }
+
+        $card = Card::find($request->id);
+        $card->update($request->all());
+        if ($profile_photo = $request->file('profile_photo')) {
+
+            $destinationPath = 'images/profile_photo/';
+            if ($card->profile_photo) {
+                unlink($destinationPath.$card->profile_photo);
+            }
+            $imageName = date('YmdHis') . "." . $profile_photo->getClientOriginalName();
+            $profile_photo->move($destinationPath, $imageName);
+            $card->profile_photo = $imageName;
+        }
+        if ($logo = $request->file('logo')) {
+            $filePath = public_path($card->logo);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+            $destinationPath = 'images/logo/';
+            $imageName = date('YmdHis') . "-" . $logo->getClientOriginalName();
+            $logo->move($destinationPath, $imageName);
+            $card->logo = 'images/logo/'."$imageName";
+        }
+        if ($badge = $request->file('badge')) {
+            $filePath = public_path($card->badge);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+            $destinationPath = 'images/badge';
+            $imageName = date('YmdHis')."-".$badge->getClientOriginalName();
+            $badge->move($destinationPath, $imageName);
+            $card->badge = 'images/badge/'."$imageName";
+        }
+        if ($pdf = $request->file('pdf')) {
+            $filePath = public_path($card->pdf);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+            $destinationPath = 'pdf';
+            $imageName = date('YmdHis')."-".$pdf->getClientOriginalExtension();
+            $pdf->move($destinationPath, $imageName);
+            $card->pdf = 'pdf/'."$imageName";
+        }
+        $card->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Card updated successfully !',
+            "card" => $card,
+        ]);
+    }
+
+    public function read(Request $request): \Illuminate\Http\JsonResponse{
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|string',
         ]);
@@ -194,6 +376,53 @@ class CardController extends Controller
             'cards' => $cards,
         ]);
     }
+
+    public function delete(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            $data = [
+                'success' => false,
+                'errors' => $validator->errors()
+            ];
+            return response()->json($data, 422);
+        }
+
+        $card = Card::find($request->id);
+        if ($card->profile_photo) {
+            $filePath = public_path($card->profile_photo);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+        if ($card->logo) {
+            $filePath = public_path($card->logo);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+        if ($card->badge) {
+            $filePath = public_path($card->badge);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+        if ($card->pdf) {
+            $filePath = public_path($card->pdf);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+        $card->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Card deleted successfully !',
+        ]);
+    }
+
 
     public function search(Request $request)
     {

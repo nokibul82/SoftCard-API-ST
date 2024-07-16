@@ -15,6 +15,7 @@ Route::post('/register',[AuthController::class,'register']);
 
 Route::post('/create',[CardController::class,'create']);
 Route::get('/read',[CardController::class,'read']);
+Route::post('/update',[CardController::class,'update']);
 Route::get('/delete/{id}',[CardController::class,'delete']);
 Route::get('/update/{id}',[CardController::class,'update']);
 Route::get('/search',[CardController::class,'search']);
