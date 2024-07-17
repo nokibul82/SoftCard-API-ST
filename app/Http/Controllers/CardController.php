@@ -142,14 +142,14 @@ class CardController extends Controller
 
         $card = Card::create($request->all());
         if ($profile_photo = $request->file('profile_photo')) {
-            $destinationPath = 'images/profile_photo/';
-            $imageName = date('YmdHis') . "." . $profile_photo->getClientOriginalName();
+            $destinationPath = 'images/profile_photo';
+            $imageName = date('YmdHis') . "-" . $profile_photo->getClientOriginalName();
             $profile_photo->move($destinationPath, $imageName);
-            $card->profile_photo = $imageName;
+            $card->profile_photo = "images/profile_photo/"."$imageName";
         }
         if ($logo = $request->file('logo')) {
             $destinationPath = 'images/logo';
-            $imageName = date('YmdHis') . "." . $logo->getClientOriginalName();
+            $imageName = date('YmdHis') . "-" . $logo->getClientOriginalName();
             $logo->move($destinationPath, $imageName);
             $card->logo = 'images/logo/'."$imageName";
         }
@@ -161,7 +161,7 @@ class CardController extends Controller
         }
         if ($pdf = $request->file('pdf')) {
             $destinationPath = 'pdf';
-            $imageName = date('YmdHis')."-".$pdf->getClientOriginalExtension();
+            $imageName = date('YmdHis')."-".$pdf->getClientOriginalName();
             $pdf->move($destinationPath, $imageName);
             $card->pdf = 'pdf/'."$imageName";
         }
@@ -243,7 +243,7 @@ class CardController extends Controller
 //            'patreon_text' => 'string',
 //            'paypal_link' => 'string',
 //            'paypal_text' => 'string',
-            'pdf' => 'mimes:pdf|max:10000',
+            'pdf' => 'mimes:pdf|max:10240',
             'pdf_text' => 'string',
 //            'phone_link' => 'string',
 //            'phone_text' => 'string',
@@ -306,23 +306,45 @@ class CardController extends Controller
         }
 
         $card = Card::find($request->id);
-        $card->update($request->all());
+        if($card == null){
+            return response()->json([
+                'success' => false,
+                'message' => 'No card found with this id !',
+            ]);
+        }
         if ($profile_photo = $request->file('profile_photo')) {
-
-            $destinationPath = 'images/profile_photo/';
-            if ($card->profile_photo) {
-                unlink($destinationPath.$card->profile_photo);
+            $filePath = public_path($card->profile_photo);
+            if (file_exists($filePath)) {
+                unlink(realpath($filePath));
             }
-            $imageName = date('YmdHis') . "." . $profile_photo->getClientOriginalName();
-            $profile_photo->move($destinationPath, $imageName);
-            $card->profile_photo = $imageName;
         }
         if ($logo = $request->file('logo')) {
             $filePath = public_path($card->logo);
             if (file_exists($filePath)) {
                 unlink($filePath);
             }
-            $destinationPath = 'images/logo/';
+        }
+        if ($badge = $request->file('badge')) {
+            $filePath = public_path($card->badge);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+        if ($pdf = $request->file('pdf')) {
+            $filePath = public_path($card->pdf);
+            if(file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+        $card->update($request->all());
+        if ($profile_photo = $request->file('profile_photo')) {
+            $destinationPath = 'images/profile_photo';
+            $imageName = date('YmdHis') . "." . $profile_photo->getClientOriginalName();
+            $profile_photo->move("$destinationPath", "$imageName");
+            $card->profile_photo = 'images/profile_photo/'."$imageName";
+        }
+        if ($logo = $request->file('logo')) {
+            $destinationPath = 'images/logo';
             $imageName = date('YmdHis') . "-" . $logo->getClientOriginalName();
             $logo->move($destinationPath, $imageName);
             $card->logo = 'images/logo/'."$imageName";
@@ -339,11 +361,11 @@ class CardController extends Controller
         }
         if ($pdf = $request->file('pdf')) {
             $filePath = public_path($card->pdf);
-            if (file_exists($filePath)) {
+            if(file_exists($filePath)) {
                 unlink($filePath);
             }
             $destinationPath = 'pdf';
-            $imageName = date('YmdHis')."-".$pdf->getClientOriginalExtension();
+            $imageName = date('YmdHis')."-".$pdf->getClientOriginalName();
             $pdf->move($destinationPath, $imageName);
             $card->pdf = 'pdf/'."$imageName";
         }
@@ -380,7 +402,7 @@ class CardController extends Controller
     public function delete(Request $request): \Illuminate\Http\JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            'id' => 'required|string',
+            'id' => 'required|integer|exists:cards,id',
         ]);
 
         if ($validator->fails()) {
@@ -392,6 +414,12 @@ class CardController extends Controller
         }
 
         $card = Card::find($request->id);
+        if($card == null){
+            return response()->json([
+                'success' => false,
+                'message' => 'No card found with this id !',
+            ]);
+        }
         if ($card->profile_photo) {
             $filePath = public_path($card->profile_photo);
             if (file_exists($filePath)) {
