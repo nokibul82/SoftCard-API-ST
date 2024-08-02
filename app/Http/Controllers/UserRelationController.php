@@ -165,4 +165,71 @@ class UserRelationController extends Controller
             'request_list' => $pending_list,
         ]);
     }
+
+    public function getContactList(Request $request){
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        if ($validator->fails()) {
+            $data = [
+                'success' => false,
+                'errors' => $validator->errors()
+            ];
+            return response()->json($data, 422);
+        }
+
+        $contact_list = UserRelation::where('user_id','=',$request->requested_to_id)->where('accepted','=',true);
+        $temp_contact_list = UserRelation::where('user_id','=',$request->requested_from_id)->where('accepted','=',true);
+        if($temp_contact_list){
+            $contact_list->union($temp_contact_list);
+        }
+        $contact_list = $contact_list->get();
+        return response()->json([
+            'success' => true,
+            'contact_list' => $contact_list,
+        ]);
+
+
+    }
+
+    public function deleteContact(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|exists:users,id',
+            'contact_id' => 'required|exists:users,id',
+        ]);
+
+        if ($validator->fails()) {
+            $data = [
+                'success' => false,
+                'errors' => $validator->errors()
+            ];
+            return response()->json($data, 422);
+        }
+        $relation = null;
+        $relation =  UserRelation::where('user_id','=',$request->requested_from_id)->where('contact_id','=',$request->requested_to_id)->first();
+        if ($relation) {
+            $relation->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Contact has been deleted !',
+            ]);
+        }else{
+            $relation =  UserRelation::where('contact_id','=',$request->requested_from_id)->where('user_id','=',$request->requested_to_id)->first();
+            if($relation == null){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'There is no contact of this user !',
+                ], 401);
+            }
+            $relation->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Contact has been deleted !',
+            ]);
+        }
+    }
+
+
 }
